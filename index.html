@@ -1,0 +1,890 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Server Project - Aidan Waugh</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0370094f-3ea8-468d-b95f-559024cf02bb" class="page sans"><header><h1 class="page-title">Server Project - Aidan Waugh</h1><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th><td><time>@February 1, 2022 11:59 PM</time></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Module</th><td><span class="selected-value select-value-color-pink">3 - Windows Server</span></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Group Members</th><td>David Luu, Gabriel LeBlanc, Sadaf Atta, Steven Orpilla</td></tr></tbody></table></header><div class="page-body"><p id="ddc0a276-9fcb-4fe3-8f55-2f480b71f341" class="">
+</p><nav id="fbacc6ea-7eb1-45b1-be5b-7ab76036f9bb" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1ba1c624-373d-49d1-bbac-0ae28406ef31">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#61203508-d777-4555-a1df-d9904ca20bed">Objectives</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4216439e-6217-4cee-9b68-8d218d2442a0">Deliverable Checklist</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c552dcb1-6bfc-44cb-9f23-fc59467e9a4a">1) Create NAT Network Router &amp; Private vSwitches</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#491eca7a-850c-46b0-843f-3a34c6e273a6">1.1) Create Internal Switch with a NAT Network</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6e3aa29c-ef95-4c4d-a539-7635a641ba77">1.2) Create Private Switches</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#676defd3-9a44-400b-8779-425e5bef9298">2) RRAS Server for NAT &amp; DHCP Relay</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5baa062c-4c8e-4de0-9e01-f2919a5d4caa">2.1) VM Creation and Basic Configuration</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#93265927-a56c-4cff-8270-7067a99d950f">2.2) Add Trusted Hosts &amp; Server Manager Setup</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#254eece3-677e-4c66-9015-73679f10e9c6">2.3) Add RRAS Role &amp; Configure Interfaces</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1d4fc6c0-877d-4113-a624-0e6095521272">2.4) Configure RRAS with NAT</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7099afd1-3ef1-4f74-ada5-e256e7af222d">2.5) Add DHCP Relay </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b359f63c-befe-41b5-b35f-bbb78d3fac01">3) DC1 Parent Domain proj.int</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f42add54-6fab-432a-9925-b81d29ece22c">3.1) Server DC1 Creation &amp; Post-Install Tasks</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#099ccc49-43f1-4b12-bf6f-030fd281ea07">3.2) Add AD DS Role Using PS</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4d4bad89-7af3-4b50-b27a-d3dbdeef02d7">3.3) Create Aidan Admin with PS &amp; Add DC1 to IT-01 Server Manager</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#14a7bd3b-dcea-49b2-90c8-921560d85e9e">3.4) ADUC Organization</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#87dd4b0d-89a1-46bf-b9b2-430f6ea49cce">3.5) DNS Review &amp; Configure Reverse Lookup Zone</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e915af3-21c7-4356-ba86-c5270b71827b">4) DHCP Server &amp; Scopes</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#97b05a65-d135-427e-b963-2eed40a069f8">4.1) Create Server &amp; Complete Post-Install</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a4ac110d-d0d2-4c88-8d32-a0def9af9aed">4.2) Install DHCP Role &amp; Configure Scopes</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#978de941-d6da-4258-a50f-10dfd6afdbd1">4.3) Test DHCP on IT-01</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#21d680ef-71aa-4605-a90b-19b1b6572138">5)  priv.proj.int Child Domain DC Server</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#135e54bb-b22e-4e1f-a458-ea89371ae302">5.1) Server DC1 Creation &amp; Post-Install Tasks</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1dc40751-c5c3-421c-b332-e058c391cfac">5.2) Add ADDS Role and Configure Child Domain</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d6a78bca-019b-460f-9c73-815a88e76b1c">5.3) Add Priv-DC1 to IT-01’s Server Manager</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#07d0d2cd-4850-4094-89e1-36652d006a3f">5.4) Join Win10 IT-02 to Child Domain</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8935fd16-c399-42ad-a59f-a54ca7ee2f29">Appendices</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0f17e465-4098-4052-a498-fa2f63764115">Appendix A) Network Planning - VM Names, IP, &amp; Scope</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7922a4a9-c68d-499f-986d-648ce60e9364">Appendix B) Network Diagram</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2a277e6e-e7db-4fde-b201-a927c340a72d">Appendix C) proj.int ADUC Organization Diagram</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#63f3eb46-0b92-4d17-8291-f7fcca7c687e">Appendix D) VM Server 2019 Creation &amp; Post-Install Tasks Scripts &amp; Checklist</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9ba1ed43-4315-4793-9ed2-ba47af824273">Appendix E) Screenshots - IT-01’s Server Manager, Hyper-V, ADUC &amp; tracert comparison</a></div></nav><h1 id="1ba1c624-373d-49d1-bbac-0ae28406ef31" class="">Introduction</h1><h2 id="61203508-d777-4555-a1df-d9904ca20bed" class=""><details open=""><summary>Objectives</summary></details></h2><div class="indented"><p id="4f697813-dca9-44c4-8382-ae8a1eb7c127" class="">As a team, create a network in Hyper-V that contains the following:</p><ul id="2b0accc7-7e9f-4e92-b0af-b086d7679f3f" class="bulleted-list"><li style="list-style-type:disc">A Windows forest root domain “p<em>roj.int</em>”<ul id="65c6831a-6cd4-4216-94e2-4b97719b6463" class="bulleted-list"><li style="list-style-type:circle">Class C <code>/24</code> subnet mask (255.255.255.0)</li></ul></li></ul><ul id="81bf4ced-ec70-4fc3-a2b5-c67b075db0f6" class="bulleted-list"><li style="list-style-type:disc">A DC server with Active Directory Integrated DNS</li></ul><ul id="d93d33e3-b64b-4077-9cd9-b6ea596e839f" class="bulleted-list"><li style="list-style-type:disc">1 DHCP server for both the root &amp; child domains</li></ul><ul id="8f7159d2-1c81-4a2d-91ae-80f66c8a19a6" class="bulleted-list"><li style="list-style-type:disc">Create a Windows child domain “p<em>riv.proj.int”</em><ul id="b6e79204-d37c-4feb-9d46-327110fcd433" class="bulleted-list"><li style="list-style-type:circle">Needs 30 host IP addresses &gt; <code>/27</code> subnet (255.255.255.224)</li></ul></li></ul><ul id="6c2b6ddf-75e5-4d02-9282-df95bff5fa3e" class="bulleted-list"><li style="list-style-type:disc">1 Windows 10 Client VM to manage all computers from the parent domain</li></ul><figure id="ddea0a91-b347-4754-869a-29e60e47ed52" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled.png"><img style="width:432px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled.png"/></a><figcaption>The team 🙂</figcaption></figure></div><h2 id="4216439e-6217-4cee-9b68-8d218d2442a0" class=""><details open=""><summary>Deliverable Checklist</summary></details></h2><div class="indented"><p id="d66a60c8-da1b-4a5b-b1a0-0c560cbb48c3" class="">❗<mark class="highlight-gray">See Appendix D, for VM Creation scripts, post-installation tasks, and network connectivity checks</mark></p><ul id="0fd99660-0c9c-4a65-87ad-889ee678bac6" class="toggle"><li><details open=""><summary>1) <strong>NAT Network Router &amp; Private vSwitches</strong></summary><ul id="596a434b-51bd-40b2-b9a0-dc2435dbfad3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create Internal vSwitch with NAT Network <em>INTNAT</em></span></li></ul><ul id="2abf9f2c-0980-4a92-9711-6330f0d1fcae" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create Private vSwitch <em>ProjLAN</em></span></li></ul><ul id="54fbab06-5119-4e5c-8ba9-5ea14440d768" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create Private vSwitch <em>PrivLAN</em></span></li></ul></details></li></ul><ul id="b12f46d2-a9c8-4a5c-aaba-6609a9e136dc" class="toggle"><li><details open=""><summary><strong>2) Routing Server with NAT &amp; DHCP Relay</strong></summary><ul id="1704fd75-44d0-43d3-a5b1-0eba3e89d843" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create Server Core VM <em>NATRTR </em>connected to vSwitch <em>INTNAT</em></span></li></ul><ul id="2b2415dc-583e-46af-804c-ae1d6b8ab9fa" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Assign IP for <em>INTNAT</em> as <code>192.168.3.253 / 24</code> and DG <code>192.168.3.254 /24</code></span></li></ul><ul id="5ede8e91-0624-43b8-9707-52e53cc8dd56" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Complete additional post-install tasks &amp; check network connectivity</span></li></ul><ul id="04ebb9f9-1a71-467a-892d-d224d2a83d82" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Add<em> IT-01</em> as a Trusted Host &amp; add <em>NATRTR</em> to Server Manager</span></li></ul><ul id="0d3991ba-47c5-4933-b647-34048b8c6fa2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Install role ‘Routing’ for RRAS</span></li></ul><ul id="adddd108-5156-4546-8695-2562abf1b910" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Rename and assign NetIPAddress to vNICs <em>ProjLAN </em><code>192.168.4.254 /24</code> and <em>PrivLAN </em><code>192.168.5.30 /27</code></span></li></ul><ul id="45419f29-3e4d-41f8-86d6-7aad32a20933" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Enable NAT on <em>INTNAT</em> as a Public Interface</span></li></ul><ul id="ce648b26-21a4-493d-9e22-5986ed1d6ea4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Configure DHCP relay</span></li></ul></details></li></ul><ul id="a5d6abd3-e2d8-440b-b99c-afc68fbc5a6c" class="toggle"><li><details open=""><summary><strong>3) DC1 Parent Domain proj.int - ADUC &amp; DNS</strong></summary><ul id="24d7db6f-2f70-4131-b0ed-bc960f5a55d9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create a DC server named <em>DC1</em> </span></li></ul><ul id="b0b47fee-81a5-40e0-8afb-a2b16b17cb74" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Configure Network Settings with <code>sconfig</code></span></li></ul><ul id="6a2138c5-0396-48b9-bb48-413c00bb6135" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Complete applicable post-install tasks (Appendix D)</span></li></ul><ul id="e13ca5a9-6e11-445d-844a-54140ea83c56" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Add a 10GB VHDX to DC1 and initialize + format</span></li></ul><ul id="d044d906-9fca-43eb-a5a4-0a859b496c5b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Install ADDS role</span></li></ul><ul id="2f1a54a4-3011-4bcf-a243-88e32aa74503" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create forest root domain <code>proj.int</code></span></li></ul><ul id="7936bbe0-f038-4e3e-bfc2-2a235e5d1d1f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">In PowerShell create domain admin user <em>Aidan</em></span></li></ul><ul id="cb418002-8171-4048-bc15-12ec2ce396fd" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Join Win10 client<em> IT-01</em> to the <code>proj.int</code> domain</span></li></ul><ul id="09a6fbe8-15cf-4529-8d4c-093d88a5bbe9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Add <em>DC1 </em>to <em>IT-01</em>’s Server Manager</span></li></ul><ul id="e7de80e6-9aeb-4e2a-8aab-bd97acfc83e3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Organize ADUC as per Appendix C</span></li></ul><ul id="8a1d5688-2c2f-43cf-a932-752bb4e60419" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Confirm DNS forwarders are pointing to external lookup</span></li></ul><ul id="7fc1373d-2070-43d7-a68c-5714eefb2803" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Configure DNS Reverse Primary Lookup Zone</span></li></ul></details></li></ul><ul id="dd50eaad-a3b1-4190-b200-7a107a33a070" class="toggle"><li><details open=""><summary><strong>4) DHCP Server &amp; Scopes</strong></summary><ul id="cc3c62d1-2920-4874-b976-1bee4e017b93" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create Server Core VM named <em>DHCP</em></span></li></ul><ul id="4efb8702-0585-4d17-bc34-83b22b5be8c4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Complete post-install tasks (Appendix D)</span></li></ul><ul id="98295756-e2a8-4413-8983-32d9232cd3f6" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Add, initialize, and format a 2nd VHDX for the database </span></li></ul><ul id="c669a395-432b-424f-a381-96eff97b798c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Install the DHCP Server role</span></li></ul><ul id="0cd0b730-1c3d-4bf2-9916-ad52bbb270e2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create the IPv4 scope for <em>ProjLAN </em><code>192.168.4.0 /24</code> (Appendix A)</span></li></ul><ul id="d0c31cc1-c497-4173-b92d-eb7238ae4d70" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create the IPv4 scope for <em>PrivLAN </em><code>192.168.5.0 /27</code> (Appendix A)</span></li></ul><ul id="eb7d4791-5c88-446b-83bf-77ef1f327ff3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Test DHCP on IT-01 with both <em>ProjLAN &amp; PrivLAN </em></span></li></ul></details></li></ul><ul id="d285745a-14eb-4564-be45-3da3f44db132" class="toggle"><li><details open=""><summary><strong>5) Create Child Domain &amp; DC Server</strong></summary><ul id="3c71c7c6-5dd3-4b5b-ab7c-c1cb572c338f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create a server core VM named <em>Priv-DC1</em></span></li></ul><ul id="b756d347-29a5-41f1-b0dc-2203f10849f7" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Configure the server with <code>sconfig</code>. IP <code>192.168.5.1</code>  and DNS <code>192.168.4.1</code> </span></li></ul><ul id="87b9104e-7633-40da-92db-42abba2fd6fb" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Rename Local administrator to <code>_PrivSysadmin</code></span></li></ul><ul id="877c989d-86ba-4c22-8845-5eb734cda8e2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create, initialize, and format a 10GB dynamic VHDX named <em>Priv-DC1_ADdb</em></span></li></ul><ul id="35ca6afa-e6f2-47c2-be2d-fbf0033eb706" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Install ADDS role</span></li></ul><ul id="fb368760-7843-4fd1-9ca1-1cf2cc4d84f2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Promote server and create child domain <em>priv.proj.int</em></span></li></ul><ul id="b02408f6-b3eb-437c-a859-750c84384178" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create child domain admin with PS</span></li></ul><ul id="81b0a0cd-8901-40cd-a247-d74472da06af" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Add <em>Priv-DC1</em> to the Server Manager on <em>IT-01</em></span></li></ul><ul id="851a3db3-018f-4782-b06e-32af11decc30" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">On <em>Priv-DC1, </em>disable the public firewall</span></li></ul><ul id="5984f6d8-4565-4f9a-8071-32b8c788951b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Verify that the DNS has a forward lookup zone <code>8.8.8.8</code></span></li></ul><ul id="5f190dfc-1d70-4a15-be7c-168858f5182d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Configure a reverse lookup zone</span></li></ul><ul id="1463f245-75e9-41d4-9b17-43fccae1ce5c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Connect Win10 VM Client <em>IT-02</em> to PrivLAN switch</span></li></ul></details></li></ul></div><h1 id="c552dcb1-6bfc-44cb-9f23-fc59467e9a4a" class="">1) Create NAT Network Router &amp; Private vSwitches</h1><h2 id="491eca7a-850c-46b0-843f-3a34c6e273a6" class=""><details open=""><summary>1.1) Create Internal Switch with a NAT Network</summary></details></h2><div class="indented"><ol type="1" id="9e0db412-79d4-4bad-ad94-28afc62d80ee" class="numbered-list" start="1"><li>From the host, open <strong>PowerShell </strong>as an <code>Administrator</code></li></ol><ol type="1" id="00f9f13a-5d09-45d7-86b5-1bd5cee0a377" class="numbered-list" start="2"><li>Enter the following commands:<pre id="8aeb660b-082d-4cbd-bf4b-b11d8bec55f4" class="code code-wrap"><code># Create a internal switch named INTNAT, -Verbose is an optional command
+New-VMSwitch -SwitchName &quot;INTNAT&quot; -SwitchType Internal -Verbose
+
+# Find the interface index of the virtual switch INTNAT
+Get-NetAdapter
+
+# Configure the NAT gateway using New-NetIPAddress
+New-NetIPAddress -IPAddress 192.168.3.254 -PrefixLength 24 -InterfaceIndex 42
+
+#Configure the NAT network with the network name and ID/Subnet
+New-NetNat -Name INTNAT -InternalIPInterfaceAddressPrefix 192.168.3.0/24
+
+#Connect the INTNAT switch to a adapter for VM DC1
+Get-VMSwitch INTNAT | Connect-VMNetworkAdapter -VMName DC1</code></pre></li></ol></div><h2 id="6e3aa29c-ef95-4c4d-a539-7635a641ba77" class=""><details open=""><summary>1.2) Create Private Switches</summary></details></h2><div class="indented"><ol type="1" id="7f0d72e9-0b40-4f16-b8e9-da2a006145ef" class="numbered-list" start="1"><li>In Hyper-V &gt; Virtual Switch Manager &gt; New virtual network switch<ol type="a" id="e659119a-b35e-4afa-b542-109086933296" class="numbered-list" start="1"><li>Create a Private Switch named “ProjLAN” for the parent <em>proj.int</em> domain</li></ol><ol type="a" id="b2bfd799-d1b7-4747-a235-279e0c8a2138" class="numbered-list" start="2"><li>Create a Private Switch named “PrivLAN” for the child <em>priv.proj.int</em> domain</li></ol><p id="d5ee1460-7fe8-40ce-a8ab-18402e0cf5e2" class="">
+</p></li></ol></div><h1 id="676defd3-9a44-400b-8779-425e5bef9298" class="">2) RRAS Server for NAT &amp; DHCP Relay</h1><h2 id="5baa062c-4c8e-4de0-9e01-f2919a5d4caa" class=""><details open=""><summary>2.1) VM Creation and Basic Configuration</summary></details></h2><div class="indented"><ol type="1" id="b2f9da09-06cd-4c63-b7f3-85db7122c7b6" class="numbered-list" start="1"><li>Create a VM named ‘NATRTR’ by running the script to create a Windows Server Core 2019 VM (<em>See Appendix D)</em></li></ol><ol type="1" id="3f6f4166-d827-4ef2-8845-66eefa2bc114" class="numbered-list" start="2"><li>Connect to <em>NATRTR</em> and set the administrator password to <code>Pa$$w0rd</code></li></ol><ol type="1" id="4a171cd7-7c60-430b-8de4-ba79bfe600ef" class="numbered-list" start="3"><li>Enter the Server Configuration screen by typing  <code>Powershell</code> then <code>Sconfig</code></li></ol><ol type="1" id="f50a5fa4-1a88-4b12-8498-94cd52e78401" class="numbered-list" start="4"><li>Update the following server configuration options<ul id="fde724c3-b41e-4776-9e43-50736938f8ee" class="bulleted-list"><li style="list-style-type:disc"><code>2</code>) Computer Name: <code>NATRTR</code></li></ul><ul id="00a06cb9-6acb-48b2-ba80-c7feecaceff5" class="bulleted-list"><li style="list-style-type:disc"><code>8</code>) Network Settings: <ul id="97246819-04fd-41dc-beef-166e7e6be21f" class="bulleted-list"><li style="list-style-type:circle">IP Address <code>192.168.3.253</code></li></ul><ul id="51aa04df-5484-4041-bb4d-225b67a1fe29" class="bulleted-list"><li style="list-style-type:circle">Subnet Mask: <code>255.255.255.0</code></li></ul><ul id="7de111ec-2f43-47a3-9c7f-42d9364b81b8" class="bulleted-list"><li style="list-style-type:circle">Default Gateway: <code>192.168.3.254</code></li></ul><ul id="5f0acde5-9492-4f0a-9b70-f5727c3c2727" class="bulleted-list"><li style="list-style-type:circle">DNS Server: <code>8.8.8.8</code> <ul id="ca9fcc47-467e-42b9-b62d-284295c9d97e" class="bulleted-list"><li style="list-style-type:square">❗ Server updates require DNS </li></ul></li></ul></li></ul><ul id="852cbf3d-0e72-43f2-9c5e-2792fba460d0" class="bulleted-list"><li style="list-style-type:disc"><code>11</code>) Windows Activation<ul id="3a2863f9-4438-4c64-a25d-374e880617ce" class="bulleted-list"><li style="list-style-type:circle"><code>2</code> Activate Windows</li></ul><ul id="1050a0f1-26a4-4376-8a59-4186fcb81cf5" class="bulleted-list"><li style="list-style-type:circle"><code>1</code> Display License info to verify the trial is activated with 180 days<figure id="ae41b93e-c1e7-4ff8-961a-82e78fb790bd" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%201.png"><img style="width:384px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%201.png"/></a></figure></li></ul></li></ul><ul id="4165e544-e27d-465e-9252-e4e0e202c24b" class="bulleted-list"><li style="list-style-type:disc"><code>6</code>) Download and Install Updates</li></ul><ul id="900a265f-5aed-4f4d-a84b-77865e3ed9c7" class="bulleted-list"><li style="list-style-type:disc"><code>8</code>) Network Settings: Remove the DNS settings</li></ul></li></ol><ol type="1" id="f736ecae-e8ed-4be6-98ad-6afbc9a12152" class="numbered-list" start="5"><li>From PowerShell enter the following to rename the admin account<code> Rename-LocalUser -Name &quot;Administrator&quot; -NewName &quot;_LSysadmin&quot;</code></li></ol></div><h2 id="93265927-a56c-4cff-8270-7067a99d950f" class=""><details open=""><summary>2.2) Add Trusted Hosts &amp; Server Manager Setup</summary></details></h2><div class="indented"><ol type="1" id="6c88e51b-ebea-4f36-8ed5-82cc6df1cc54" class="numbered-list" start="1"><li>Set Win10 VM<em> IT-01</em> as a trusted host for <em>NATRTR </em><ul id="c9f46c4c-83ec-4898-b927-99716c68036e" class="bulleted-list"><li style="list-style-type:disc">Open PowerShell as Administrator and run the following:<pre id="f1859bd0-cfc5-444f-b91f-3a9b11d35d87" class="code code-wrap"><code>Start-Service -Name WinRM
+Get-ChildItem -Path WSMan:\localhost\Client\TrustedHosts | Format-List
+#Set all hosts in TSP.int as trusted
+Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value NATRTR.local -Force
+
+#NOTE - this part may not be required as IT-01 will be a member of the domain, but it does not break things by including it
+Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value *.proj.int -Concatenate -Force
+Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value *priv.proj.int -Concatenate -Force
+
+Get-ChildItem -Path WSMan:\localhost\Client\TrustedHosts | Format-List
+
+#Clear all trusted hosts- DO NOT RUN, here for reference
+Clear-Item -Path WSMan:\localhost\Client\TrustedHosts -Force</code></pre></li></ul></li></ol><ol type="1" id="339d204a-b10f-4f9e-813d-c7988ff8d40d" class="numbered-list" start="2"><li>On the <em>IT-01 </em>host, go to Settings &gt; Apps &amp; features &gt; click <strong>Optional features</strong> and install:<ul id="ee12c440-428f-48bf-9afd-118443004d91" class="bulleted-list"><li style="list-style-type:disc">RSAT: Server Manager</li></ul><ul id="b37c68a4-aeeb-44c4-8c11-dc73b961a2e7" class="bulleted-list"><li style="list-style-type:disc">RSAT: Active Directory Domain Services and Lightweight Directory Services Tools</li></ul><ul id="a7ff6f2b-dc10-410a-983d-883c20c8b523" class="bulleted-list"><li style="list-style-type:disc">RSAT: DHCP Server Tools</li></ul><ul id="a8d00907-5ff5-4a7d-acda-89260408b7af" class="bulleted-list"><li style="list-style-type:disc">RSAT: DNS Server Tools</li></ul><ul id="4f72647e-7f82-4173-be25-1aef607938d0" class="bulleted-list"><li style="list-style-type:disc">RSAT: Group Policy Management Tools</li></ul></li></ol><ol type="1" id="c07eb98f-f34a-47f6-8a6f-0c428526787e" class="numbered-list" start="3"><li>On<em> IT-01</em>, download and install <a href="https://www.microsoft.com/en-ca/download/details.aspx?id=45520">Remote Server Administration Tools for Windows 10</a>  This will make the Routing and Remote Access tool available on Server Manager</li></ol><ol type="1" id="7e22ca39-2242-4d8a-87be-b8dc99539461" class="numbered-list" start="4"><li>Add <em>NATRTR </em>to Server Manager<ol type="a" id="848dabc8-08eb-45f8-8d77-44b24aa66ba2" class="numbered-list" start="1"><li>Right click <strong>All Servers</strong> &gt; <strong>Add Servers &gt; DNS </strong>tab &gt; Search for <code>NATRTR</code> &gt; OK</li></ol><ol type="a" id="05ba8463-de71-4789-a3a8-1858f6e5804e" class="numbered-list" start="2"><li>From All Servers, right click <strong>NATRTR &gt; Manage As... </strong>and enter the credentials <code>NATRTR\_Lsysadmin</code> and <code>Pa$$w0rd</code> <figure id="7305c67e-97b3-4941-b7d9-525c40e163f1" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%202.png"><img style="width:1015px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%202.png"/></a></figure></li></ol></li></ol><ol type="1" id="353987fa-ba04-43a5-86b2-ab2bb34857cf" class="numbered-list" start="5"><li>⏲ Take a checkpoint on <em>NATRTR</em> named ‘Before RRAS Role’</li></ol><p id="79d00667-4f2c-4924-a72d-d79eb07726c4" class="">❗ These steps can also be accomplished on the host <em>Thinkpad</em>. But only for NATRTR as it is the only VM attached to a internal switch. VM’s on a private switch must be managed from a Win10 VM client.</p></div><h2 id="254eece3-677e-4c66-9015-73679f10e9c6" class=""><details open=""><summary>2.3) Add RRAS Role &amp; Configure Interfaces</summary></details></h2><div class="indented"><ol type="1" id="eea88a5e-38dc-4db4-a87e-e77729c4ec08" class="numbered-list" start="1"><li>From Server Manager, right click <em>NATRTR </em>&gt; <strong>Add Roles and Features</strong> to open the Wizard<ol type="a" id="73eca750-97f7-437e-8a1b-e6a1245f238b" class="numbered-list" start="1"><li>Server Roles: <strong>Remote Access</strong></li></ol><ol type="a" id="1b0a928a-8cbf-47ea-a394-8468a5684203" class="numbered-list" start="2"><li>Features: Leave the defaults as is</li></ol><ol type="a" id="d46e997d-4d11-4e6b-8aaf-74343256e772" class="numbered-list" start="3"><li>Remote Access, Role Services: Check <strong>Routing</strong> and the accept the additional required features</li></ol><ol type="a" id="b013f17f-1701-4d74-853a-83650195d2fa" class="numbered-list" start="4"><li>Role Services: Leave defaults as is</li></ol><ol type="a" id="1ecd028e-80a9-4d43-8035-e632363f90eb" class="numbered-list" start="5"><li>Confirm and install</li></ol></li></ol><ol type="1" id="593d2e8c-b83c-4002-93aa-d1942ba416b5" class="numbered-list" start="2"><li>Restart the server</li></ol><ol type="1" id="5fca5753-d1fa-4b27-b541-5154fded7a78" class="numbered-list" start="3"><li>⏲ Checkpoint <em>NATRTR</em> named ‘Before RRAS Configuration’</li></ol><ol type="1" id="efb66989-8a13-43a3-8621-6efeb5fd60e4" class="numbered-list" start="4"><li>In Hyper-V add Network Adapters on NATRTR to both private switches <em>PrivLAN</em> and <em>ProjLAN </em></li></ol><ol type="1" id="995e3e37-c083-47d2-bfd8-17208c408920" class="numbered-list" start="5"><li>Open Routing and Remote Access MMC by right clicking <strong>NATRTR </strong>in Server Manager &gt; <strong>Remote Access Management</strong><ol type="a" id="bd85263b-2347-400a-9e6c-428a5bf75325" class="numbered-list" start="1"><li>Add the <em>NATRTR server </em>with <code>NATRTR\_Lsysadmin</code> and <code>Pa$$w0rd</code> credentials</li></ol><ol type="a" id="59298b08-40c1-4c9a-9d8a-7296c7bdff0e" class="numbered-list" start="2"><li>From Remote Access Management Console, have both <strong>DirectAccess and VPN</strong> and <strong>NATRTR </strong>highlighted and click <strong>Open RRAS Management </strong>to open the MMC<figure id="38518b38-da12-482c-9e78-0c75905a397e" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%203.png"><img style="width:1860px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%203.png"/></a></figure></li></ol></li></ol><ol type="1" id="7ddba0ca-42a8-4b57-9d95-a30b2ac4576d" class="numbered-list" start="6"><li>View the 3 Ethernet Interfaces for NATRTR.local &gt; IPv4 &gt; General<ul id="2d2aecb1-b0a7-43f1-b946-3ebc44d4429a" class="bulleted-list"><li style="list-style-type:disc">Notice that they are all named ‘Ethernet’ or ‘Ethernet 2’ and 2 of them (<em>PrivLAN &amp; ProjLAN</em>) have APIPA addresses</li></ul><ul id="2392f4d9-32ec-4b14-b7e5-6fa75981f4e6" class="bulleted-list"><li style="list-style-type:disc">❗ The Ethernet # is determined by the order the network adapters were added to the VM in Hyper-V. Can also view the MacAddresses<figure id="ff678b00-4c67-44cc-9187-4bfff26c91d7" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%204.png"><img style="width:384px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%204.png"/></a></figure></li></ul></li></ol><ol type="1" id="2ca50aa9-4581-471f-b583-294a89a30b8d" class="numbered-list" start="7"><li>From PowerShell on <em>NATRTR </em>enter the following commands to rename the interfaces &amp; set IP addresses<pre id="f532e4a2-8315-4d18-bda1-0b66174a6816" class="code code-wrap"><code>#Rename NetAdapters - Verify by Hyper-V order or MacAddress
+Rename-NetAdapter -Name &quot;Ethernet&quot; -NewName &quot;INTNAT&quot;
+Rename-NetAdapter -Name &quot;Ethernet 2&quot; -NewName &quot;ProjLAN&quot;
+Rename-NetAdapter -Name &quot;Ethernet 3&quot; -NewName &quot;PrivLAN&quot;
+
+#View all NetAdapter&#x27;s and basic properties
+Get-NetAdapter
+#Set Interface IP Address
+New-NetIPAddress –InterfaceAlias &#x27;ProjLAN&#x27; –IPAddress &#x27;192.168.4.254&#x27; –PrefixLength 24
+New-NetIPAddress –InterfaceAlias &#x27;PrivLAN&#x27; –IPAddress &#x27;192.168.5.30&#x27; –PrefixLength 27</code></pre><figure id="b5228023-b7ca-4e22-8354-73a0f2ab3c45" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%205.png"><img style="width:528px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%205.png"/></a></figure></li></ol></div><h2 id="1d4fc6c0-877d-4113-a624-0e6095521272" class=""><details open=""><summary>2.4) Configure RRAS with NAT</summary></details></h2><div class="indented"><ol type="1" id="402f5d0e-d144-4bd0-9013-497f338f11d5" class="numbered-list" start="1"><li>From Routing and Remote Access MMC, right click on <strong>NATRTR.local &gt; </strong>Click on <strong>Configure and Enable Routing and Remote Access</strong> to open the Setup Wizard</li></ol><ol type="1" id="97a50f9c-ca47-4dd6-b59c-2913dcb0c257" class="numbered-list" start="2"><li>Complete the Routing and Remote Access Server Setup Wizard:<ul id="a2b897cc-f048-4ef6-ae9d-da4162e8ebf4" class="toggle"><li><details open=""><summary>Configuration: <strong>Custom</strong> with <strong>NAT </strong>and <strong>LAN Routing</strong> (for DHCP Relay) selected</summary><figure id="4cec7ced-44ff-489f-b078-1c977200e46c" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%206.png"><img style="width:240px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%206.png"/></a></figure><figure id="f3096dc9-4be1-489f-8b67-18c93bf060a3" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%207.png"><img style="width:336px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%207.png"/></a><figcaption>Successful install</figcaption></figure></details></li></ul></li></ol><ol type="1" id="03c5a34b-9248-436f-81ad-99f3694b1293" class="numbered-list" start="3"><li>From NATRTR.local &gt; IPv4&gt; right click <strong>NAT</strong> &gt; <strong>New Interface...</strong><ol type="a" id="5e803391-1a71-48d9-87ee-51c7e54340bc" class="numbered-list" start="1"><li>Select <strong>INTNAT</strong>&gt; Interface Type: <strong>Public </strong>&amp; check <strong>Enable NAT</strong><figure id="e600642e-10b4-4374-8a68-93f1d35c757d" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%208.png"><img style="width:384px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%208.png"/></a></figure></li></ol></li></ol><ol type="1" id="2b7c15ef-310c-4fb3-b168-64c8ab91e9d2" class="numbered-list" start="4"><li>Verify networking <ol type="a" id="078291df-bb0e-4033-8721-a2a08f5503f3" class="numbered-list" start="1"><li>From <em>NATRTR’s</em> PowerShell run <code>tracert google.ca</code> (DNS resolves as 8.8.8.8 is set)</li></ol><ol type="a" id="7483cf72-54b1-4806-93c7-6b59f7f40021" class="numbered-list" start="2"><li>Remove the DNS settings on <em>NATRTR</em> with <code>sconfig</code> and <code>tracert 8.8.8.8</code></li></ol><ol type="a" id="66db5327-e983-4e2a-8408-bf7ea5c82228" class="numbered-list" start="3"><li>From a WIN10 <em>IT-01</em> VM, test ProjLAN network interface<ol type="i" id="b5428ec3-63df-477a-9b79-580b0b7d3d1a" class="numbered-list" start="1"><li>Set a static IP of <code>192.168.4.21</code> and DG <code>192.168.4.254</code> , and run <code>tracert 8.8.8.8</code></li></ol></li></ol><ol type="a" id="a4d9eeb7-96c4-48c6-934a-99f87727cee3" class="numbered-list" start="4"><li>From a WIN10 <em>IT-01 </em>VM, test PrivLAN network interface<ol type="i" id="9359c198-64c2-4c96-ae29-df61e08a9da1" class="numbered-list" start="1"><li>Set a static IP of <code>192.168.5.11</code> and DG <code>192.168.5.30</code> , and run <code>tracert 8.8.8.8</code><figure id="49caf9b7-ebd1-4918-91e4-41e6d34e3bb5" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%209.png"><img style="width:1107px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%209.png"/></a></figure></li></ol></li></ol></li></ol><ol type="1" id="1064618e-84c3-4a3c-b31c-14ae1ee35731" class="numbered-list" start="5"><li>⏲ Take a checkpoint on <em>NATRTR</em> ‘Before DHCP Relay’</li></ol></div><h2 id="7099afd1-3ef1-4f74-ada5-e256e7af222d" class=""><details open=""><summary>2.5) Add DHCP Relay </summary></details></h2><div class="indented"><ul id="2ef47cde-72c7-40c0-ba22-e2fcf15d9fd7" class="bulleted-list"><li style="list-style-type:disc">Note, the configuration option ‘LAN Routing’ from 2.3 is what enables DHCP Relay</li></ul><ol type="1" id="90d1e51b-1970-4e9b-b30d-2980294d2f6e" class="numbered-list" start="1"><li>In Routing and Remote Access MMC &gt; IPv4 &gt; right click <strong>General &gt; New Routing Protocol</strong><ol type="a" id="48c59a4d-7459-4cf7-b0ef-289504b2c7e0" class="numbered-list" start="1"><li>In the popup, click <strong>DHCP Relay Agent &gt; OK</strong></li></ol></li></ol><ol type="1" id="7d5072c1-d4cd-4fc5-8894-7c960477667c" class="numbered-list" start="2"><li>From the new option in IPv4 right click <strong>DHCP Relay Agent</strong> &gt; <strong>New Interface... </strong><ol type="a" id="4c4d192e-d966-4a8f-ac96-6eb1e482fd72" class="numbered-list" start="1"><li>Click <strong>ProjLAN &gt; OK &gt; </strong>Leave the default general properties as is &gt; <strong>OK</strong></li></ol><ol type="a" id="ade63906-ee4d-4442-9543-ad7562b7a073" class="numbered-list" start="2"><li>Repeat for <strong>PrivLAN</strong></li></ol><figure id="46a328fb-af46-4c2d-8d96-5c2757d4ce89" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2010.png"><img style="width:1106px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2010.png"/></a></figure></li></ol><ol type="1" id="9164c213-16a8-40f5-a4d1-1404ae3a4dd5" class="numbered-list" start="3"><li>Right click <strong>DHCP Relay Agent</strong> &gt; <strong>Properties</strong> &gt; Add <code>192.168.4.2</code> as the DHCP Server Address<figure id="1f6c882a-3109-42ca-9954-13e8986afe41" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2011.png"><img style="width:288px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2011.png"/></a></figure></li></ol><ol type="1" id="77b3771b-6f70-4048-b7eb-9cd28d3d3f07" class="numbered-list" start="4"><li>⏲ Take a checkpoint</li></ol></div><h1 id="b359f63c-befe-41b5-b35f-bbb78d3fac01" class="">3) DC1 Parent Domain proj.int</h1><h2 id="f42add54-6fab-432a-9925-b81d29ece22c" class=""><details open=""><summary>3.1) Server DC1 Creation &amp; Post-Install Tasks</summary></details></h2><div class="indented"><ol type="1" id="04a00fda-4481-47ce-a9c7-e35bd22b075e" class="numbered-list" start="1"><li>Create VM and set admin password as <code>Pa$$w0rd</code></li></ol><ol type="1" id="50c904df-e096-4ca0-ae36-87fe66d1b737" class="numbered-list" start="2"><li>Enter Server Configuration with <code>sconfig</code><ul id="aa61b54d-38f2-4209-ba4f-791efd5b1c71" class="bulleted-list"><li style="list-style-type:disc"><code>2</code>) Computer Name: <code>DC1</code></li></ul><ul id="3baf0f4a-dec7-48ca-89a6-2ad8a3f65cf8" class="bulleted-list"><li style="list-style-type:disc"><code>8</code>) Network Settings<ul id="66054787-d6aa-48ae-a81e-1c40dd363362" class="bulleted-list"><li style="list-style-type:circle"><code>1</code>) Set Network Adapter Address <ul id="823cd7c6-fc67-46fe-8ed6-de568275f47a" class="bulleted-list"><li style="list-style-type:square">Static IP <code>192.168.4.1</code> </li></ul><ul id="d1973409-999a-431d-96a5-ec137945ad41" class="bulleted-list"><li style="list-style-type:square">Subnet Mask: <code>255.255.255.0</code></li></ul><ul id="3ffe3760-1d37-4ad6-8148-4ab376c1fd08" class="bulleted-list"><li style="list-style-type:square">Default Gateway: <code>192.168.4.254</code></li></ul></li></ul><ul id="02123431-f2cd-4447-abf3-11ea98c886d5" class="bulleted-list"><li style="list-style-type:circle"><code>2</code>) Set DNS Servers: <code>8.8.8.8</code></li></ul></li></ul><ul id="d692a85e-a149-46dd-80f0-c52100e6d6ce" class="bulleted-list"><li style="list-style-type:disc"><code>6</code>) Download and Install Updates</li></ul></li></ol><ol type="1" id="02f33f49-1089-4560-8cb5-97b5cd7e1d07" class="numbered-list" start="3"><li>From PowerShell run the following then reboot<ol type="a" id="ac1d491c-2de6-48a4-a112-b1bad5676575" class="numbered-list" start="1"><li><code>Rename-LocalUser -Name &quot;Administrator&quot; -NewName &quot;_Sysadmin&quot;</code></li></ol><ol type="a" id="313b5857-3b3b-42bd-91bf-fcdd2d6c0249" class="numbered-list" start="2"><li><code>Rename-NetAdapter -Name &quot;Ethernet&quot; -NewName &quot;ProjLAN&quot;</code></li></ol></li></ol><ol type="1" id="3623d854-798a-4f7c-8066-9994289f6b8e" class="numbered-list" start="4"><li>Complete Server Configuration &amp; Network connectivity verification as listed in <em>Appendix D</em></li></ol><ol type="1" id="f57e80ba-3038-43ec-8f58-b4dfed11c2f1" class="numbered-list" start="5"><li>Create and attach a 10GB Dynamically expanding VHDX named <code>DC_ADdb</code> to <em>DC1</em>.</li></ol><ol type="1" id="eedce9a6-02d6-4173-aad7-a566e65c7bd9" class="numbered-list" start="6"><li>From <em>DC1’s</em> PowerShell Initialize and format the disk by entering the following:<pre id="d7b554c2-ea4f-44ca-aeb3-ffdff3583638" class="code code-wrap"><code>Get-Disk
+Initialize-Disk -Number 1
+New-Partition -DiskNumber 1 -UseMaximumSize
+Get-Partition -DiskNumber 1
+Get-Partition -DiskNumber 1 -PartitionNumber 2 | Format-Volume -FileSystem NTFS
+Get-Partition -DiskNumber 1 -PartitionNumber 2 | Set-Partition -NewDriveLetter D</code></pre><ul id="9cd86caf-794a-498b-8fb7-731d0bb57e2d" class="bulleted-list"><li style="list-style-type:disc">Create folders ‘SYSVOL’ and ‘NTDS’ in the new <code>D:\ </code>Drive with <code>md SYSVOL</code> &amp; <code>md NTDS</code></li></ul></li></ol><ol type="1" id="a2c0a1b2-e6ba-4162-877a-c696dd4db3a7" class="numbered-list" start="7"><li>⏲ Make a checkpoint ‘Before AD Role’</li></ol></div><h2 id="099ccc49-43f1-4b12-bf6f-030fd281ea07" class=""><details open=""><summary>3.2) Add AD DS Role Using PS</summary></details></h2><div class="indented"><p id="645fdc61-fb52-434a-af04-3fd7dbef2589" class="">❗ Complete all of the following steps in this section from <em>DC1’s</em> PowerShell</p><ol type="1" id="40dded0b-fd98-497e-a024-85274a117d5c" class="numbered-list" start="1"><li>Install the Active Directory Domain Services role<pre id="b385d48f-b2ab-41b2-84c4-225b4519ed90" class="code code-wrap"><code>#Install ADDS and Group Policy Management Console (GPMC)
+Install-WindowsFeature -Name AD-Domain-Services,GPMC -IncludeManagementTools
+
+#(Optioal) See the available cmdlets in the ADDSDeployment module
+Get-Command -Module ADDSDeployment</code></pre><figure id="30fd7043-e230-4c2c-8746-5691d5324738" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2012.png"><img style="width:480px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2012.png"/></a></figure></li></ol><ol type="1" id="973be791-7c7b-477a-80e3-fd5005e976fd" class="numbered-list" start="2"><li>⏲ Take a checkpoint</li></ol><ol type="1" id="ffef9d39-3e39-4fb3-8cb5-1fff97f0bf33" class="numbered-list" start="3"><li>Install a new forest root domain <code>proj.int</code><pre id="38e1644a-a6dc-4a79-a165-3bef60dbbb08" class="code code-wrap"><code># 
+# Windows PowerShell script for AD DS Deployment
+# Install-ADDSForest: Installs a new forest root domain
+#
+
+Import-Module ADDSDeployment
+Install-ADDSForest `
+-DatabasePath &quot;D:\NTDS&quot; `
+-DomainMode &quot;WinThreshold&quot; `
+-DomainName &quot;proj.int&quot; `
+-DomainNetbiosName &quot;proj&quot; `
+-ForestMode &quot;WinThreshold&quot; `
+-InstallDns:$true `
+-LogPath &quot;D:\NTDS&quot; `
+-NoRebootOnCompletion:$false `
+-SysvolPath &quot;D:\SYSVOL&quot; `
+-Force:$true
+
+# Enter Pa$$w0rd as the SafeModeAdministrator password</code></pre></li></ol><ol type="1" id="a992b795-0a66-4fc9-8ec5-ea1046afe2a9" class="numbered-list" start="4"><li>Reboot the DC1 server and login with userPrincipleName (UPN) <code>_Sysadmin@proj.int</code> or <code>proj\_Sysadmin</code></li></ol><ol type="1" id="87f547bc-bb25-4264-92a4-d06419a8e5f5" class="numbered-list" start="5"><li>(Optional) Verify the successful installation of the services in PowerShell<pre id="e1d93128-b43d-469f-99e0-47ab1a841b7c" class="code code-wrap"><code># List the status of the AD related services on DC
+Get-Service adws,kdc,netlogon,dns
+
+# List configuration details of the DC
+Get-ADDomainController
+
+# List details of Active Directory Domain
+Get-ADDomain proj.int
+
+# List Active Directory Forest details
+Get-ADForest proj.int</code></pre></li></ol><ol type="1" id="86c09adb-a7f3-404c-bdc7-e5571e06a285" class="numbered-list" start="6"><li>⏲ Take a checkpoint</li></ol></div><h2 id="4d4bad89-7af3-4b50-b27a-d3dbdeef02d7" class=""><details open=""><summary>3.3) Create Aidan Admin with PS &amp; Add DC1 to IT-01 Server Manager</summary></details></h2><div class="indented"><ol type="1" id="0be22c89-631a-4e17-85ae-b82f5543980f" class="numbered-list" start="1"><li>Enter the following on DC1’s PowerShell to make a new AD Admin ‘Aidan’<pre id="28b2273f-1477-4a35-a9de-c72cb693fdad" class="code code-wrap"><code>Import-Module ActiveDirectory
+New-ADUser `
+-Name &quot;Aidan&quot; `
+-GivenName &quot;Aidan&quot; `
+-Surname &quot;Waugh&quot; `
+-SamAccountName &quot;Aidan&quot; `
+-UserPrincipalName &quot;Aidan@proj.int&quot; `
+-AccountPassword (ConvertTo-SecureString &quot;Password123&quot; -AsPlainText -Force) `
+-ChangePasswordAtLogon $true `
+-Enabled $true
+
+#View User Details
+Get-ADUser -Identity Aidan -Properties *
+
+#Copy _Sysadmin&#x27;s property &#x27;Member of
+$getusergroups = Get-ADUser –Identity _Sysadmin -Properties memberof | Select-Object -ExpandProperty memberof
+#Assign Aidan to be a member of the same groups - IE become an admin
+$getusergroups | Add-ADGroupMember -Members Aidan -verbose
+
+#Verify
+Get-ADUser -Identity Aidan -Properties memberof | Select-Object -ExpandProperty memberof</code></pre></li></ol><ol type="1" id="ea4c101f-49f8-44da-ab2f-41c7433c69f8" class="numbered-list" start="2"><li>On <em>DC1</em>, log in with <code>Aidan</code> to change the password &amp; do activities as domain admin</li></ol><ol type="1" id="8158ef6a-7a62-422b-975f-0eea2be142f7" class="numbered-list" start="3"><li>Start VM <em>IT-01</em> and complete the following:<ol type="a" id="ce036587-e95d-416b-abc1-1da39621659c" class="numbered-list" start="1"><li>Set <em>IT-01</em> Static IP to <code>192.168.4.21</code>, DG <code>192.168.4.254</code>, and DNS <code>192.168.4.1</code></li></ol><ol type="a" id="634dd1d4-dfa8-461d-975c-ee05dc3a6d3b" class="numbered-list" start="2"><li>Update the trusted hosts in PowerShell <code>Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value *.proj.int -Concatenate -Force</code></li></ol></li></ol><ol type="1" id="fc824b59-24f7-4d20-a7f4-e54928a0eeea" class="numbered-list" start="4"><li>Open Server Manager on <em>IT-01</em> (have the same RSAT tools installed as step 2.2<ol type="a" id="ed027773-134d-46ee-89f7-f7ec7630fdd2" class="numbered-list" start="1"><li>Add server via DNS entry <code>DC1.proj.int</code> and enter <code>proj\Aidan</code> credentials</li></ol></li></ol><ol type="1" id="155c2021-508d-4960-a9ef-00602c782f62" class="numbered-list" start="5"><li>⏲ Checkpoint <em>DC1 </em>&amp; <em>IT-01</em></li></ol><ol type="1" id="ee06a1b7-e7c0-4c90-904d-1bbf413001e9" class="numbered-list" start="6"><li>Join<em> IT-01</em> to the domain <code>proj</code> with <code>Aidan</code> credentials</li></ol><ol type="1" id="32d573b9-85da-491b-97e3-f9b87124fd18" class="numbered-list" start="7"><li>Reboot the<em> IT-01</em> VM and sign in with <code>Aidan</code></li></ol><ol type="1" id="018b787c-aa2f-4c6e-a8d0-acbb67335640" class="numbered-list" start="8"><li>Re-add <em>DC1</em> to Server Manager (it shows up in domain search) , as this is a new user profile on <em>IT-01</em></li></ol><ol type="1" id="f63847da-dd61-48ae-a4e6-d68058cf4a8e" class="numbered-list" start="9"><li>⏲ Checkpoint <em>IT-01</em></li></ol></div><h2 id="14a7bd3b-dcea-49b2-90c8-921560d85e9e" class=""><details open=""><summary>3.4) ADUC Organization</summary></details></h2><div class="indented"><ol type="1" id="51d63374-59ae-4fc4-97bb-ef2070145c10" class="numbered-list" start="1"><li>From <em>IT-01</em>’s Server Manager &gt; Tools &gt; <strong>Active Directory Users and Computers</strong><ol type="a" id="3f1440b6-7b24-47c8-bed3-ceeef7547f3a" class="numbered-list" start="1"><li>Proj.int &gt; Users &gt; right click <strong>Aidan &gt; Properties</strong> and verify correct admin settings are set and update any names or descriptions (member of should be fine as it was a direct copy of _Sysadmin)</li></ol></li></ol><ol type="1" id="8131deb4-8b8e-46de-ad45-17c4dfb6ef8e" class="numbered-list" start="2"><li>Organize ADUC to match the following diagram. Create OU’s and Users as needed<figure id="81d0d8e9-d2e3-41ea-82ae-964ae10a113f" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Proj_ADUC_organization.png"><img style="width:1298px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Proj_ADUC_organization.png"/></a></figure><figure id="065056f6-d830-4f54-80e5-acc1cecfb1e2" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2013.png"><img style="width:432px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2013.png"/></a></figure></li></ol></div><h2 id="87dd4b0d-89a1-46bf-b9b2-430f6ea49cce" class=""><details open=""><summary>3.5) DNS Review &amp; Configure Reverse Lookup Zone</summary></details></h2><div class="indented"><ol type="1" id="06d5ab4f-8ac0-496b-8c42-df2089f72f4e" class="numbered-list" start="1"><li>From <em>IT-01’s</em> Server Manager &gt; Open <strong>DNS Manager</strong></li></ol><ol type="1" id="c4ef0d96-55c7-44f9-8c38-7e0cfa6f7801" class="numbered-list" start="2"><li>Right click <strong>DC1.proj.int</strong> &gt; Properties &gt; Open the <strong>Forwarders</strong> tab<ul id="88fafa30-e5ad-4ad5-81cc-26df95a229d2" class="bulleted-list"><li style="list-style-type:disc">The previous DNS address <code>8.8.8.8</code> is now set as the forwarder &amp; the <em>DC1 </em>Interface DNS points to itself. This was all done automatically during the DNS installation<figure id="b1eeed93-cf3c-4aa8-a82e-a3d98e9c6adf" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2014.png"><img style="width:1301px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2014.png"/></a></figure></li></ul></li></ol><ol type="1" id="0b4e1ac2-fbd1-42b3-a48f-41afa2e47d50" class="numbered-list" start="3"><li>Navigate to Forward Lookup Zones &gt; proj.int<ul id="2e226915-31e3-4fcd-ae1f-8018c723ad9a" class="bulleted-list"><li style="list-style-type:disc">This lookup zone does not need to be configured &amp; it already has entries <figure id="7854f562-8a8b-4e32-a1d9-4657656e86dd" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2015.png"><img style="width:549px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2015.png"/></a></figure></li></ul></li></ol><ol type="1" id="b8ff059b-8051-4d5f-94fc-dc1a1d9417bd" class="numbered-list" start="4"><li>Configure AD DNS Reverse Lookup Zone, right click &gt; <strong>New Zone..</strong> to open the Wizard<ol type="a" id="e27b0f6e-c937-4efc-a9cc-de9f88f2409a" class="numbered-list" start="1"><li>Zone Type: <strong>Primary Zone</strong></li></ol><ol type="a" id="76a228dc-11e0-42d5-a37b-5dfe1459dfc7" class="numbered-list" start="2"><li>Active Directory Zone Replication Scope: <strong>To all DNS servers running on domain controllers in this domain: proj.int </strong>(2nd option)</li></ol><ol type="a" id="47b83804-79b2-4bbd-abdc-b1787f6955cc" class="numbered-list" start="3"><li>Reverse Lookup Zone Name: <strong>IPv4 Reverse Lookup Zone</strong></li></ol><ol type="a" id="c2e25e64-87ac-441a-8256-a0fffbc5d0e6" class="numbered-list" start="4"><li>Network ID: <code>192.168.4</code></li></ol><ol type="a" id="b0f83789-9593-4848-b830-183c237fad0b" class="numbered-list" start="5"><li>Dynamic Update: <strong>Allow only secure dynamic updates</strong> (1st option which is recommended for Active Directory)<figure id="6bee6a82-432a-48d9-aefd-f70da8f8d078" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2016.png"><img style="width:288px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2016.png"/></a></figure></li></ol></li></ol><ol type="1" id="d3d6fd47-7a83-4fe8-adea-17959d0e18ae" class="numbered-list" start="5"><li>⏲ Take a checkpoint on <em>DC1</em></li></ol></div><h1 id="2e915af3-21c7-4356-ba86-c5270b71827b" class="">4) DHCP Server &amp; Scopes</h1><h2 id="97b05a65-d135-427e-b963-2eed40a069f8" class=""><details open=""><summary>4.1) Create Server &amp; Complete Post-Install</summary></details></h2><div class="indented"><ol type="1" id="17d9b72b-807e-4194-a522-5f9c45bd6fe6" class="numbered-list" start="1"><li>Create a Server Core VM named <em>DHCP </em>with IP Address of <code>192.168.4.2</code><ol type="a" id="fb996240-7337-4c54-8508-063175eafaff" class="numbered-list" start="1"><li>Complete all post-install tasks, join the domain, check network connectivity, add to Server Manager (see Appendix D)</li></ol></li></ol><ol type="1" id="892c7e44-2cd9-4408-a7f3-e8225349278d" class="numbered-list" start="2"><li>Create and attach a 10GB Dynamic VHDX named ‘DHCP_db’</li></ol><ol type="1" id="e43c516f-195c-4e28-821d-a8ec121c0ce3" class="numbered-list" start="3"><li>From IT-01 Server Manager &gt; File and Storage Services &gt; Volumes &gt; Disks<ol type="a" id="af17724a-7267-4305-a353-325d6ddfcb86" class="numbered-list" start="1"><li>Find the <strong>Offline</strong> disk on <em>DHCP</em> &gt; Bring Online</li></ol><ol type="a" id="f7552aac-2b19-40a3-b779-905f8d56df6b" class="numbered-list" start="2"><li>Initialize and format drive as <code>D:\</code></li></ol></li></ol><ol type="1" id="b9b57cc9-0c84-4654-a77a-bbf1dabb5e6b" class="numbered-list" start="4"><li>On D:\ create the folders \DHCP\Backup by either:<ol type="a" id="c43bc78d-c2a6-4c78-8168-5ffa84b5b179" class="numbered-list" start="1"><li>Use PowerShell <code>PS d:\&gt; md DHCP\Backup</code></li></ol><ol type="a" id="f5a39c39-4eeb-4765-b75f-48c35874343a" class="numbered-list" start="2"><li>On<em> IT-01</em> navigate to <code>\\Dhcp\d$</code></li></ol></li></ol><ol type="1" id="0d7588d5-c115-4cf0-ac4b-092dd33eeeb1" class="numbered-list" start="5"><li>⏲ Checkpoint</li></ol></div><h2 id="a4ac110d-d0d2-4c88-8d32-a0def9af9aed" class=""><details open=""><summary>4.2) Install DHCP Role &amp; Configure Scopes</summary></details></h2><div class="indented"><ol type="1" id="31b8decd-de1c-418a-80a3-2b6f09b40e00" class="numbered-list" start="1"><li>From <em>IT-01</em>’s Server Manager &gt; DHCP &gt; <strong>Add Roles and features</strong><ol type="a" id="8857fdd4-2cc3-4b2c-b7b7-d3958eaf3dd3" class="numbered-list" start="1"><li>Complete the Wizard and install the role <strong>DHCP Server</strong> <p id="fa0c4cd8-3f1e-43d9-b184-f40714b5943d" class="">Once installation is complete click <strong>Complete DHCP configuration</strong></p></li></ol></li></ol><ol type="1" id="012766d2-a05d-48e7-a5a2-0b029fe2dbd4" class="numbered-list" start="2"><li>Complete the DHCP Post-Install Configuration wizard<ol type="a" id="f5a2e43b-55d3-4e68-b2d3-6dbcbea5d267" class="numbered-list" start="1"><li>Authorization: Click <strong>Use alternate credentials</strong> with  <code>proj\_Sysadmin</code> </li></ol><ol type="a" id="a5d54ed0-d1da-4fa5-bb21-38a3beaedacd" class="numbered-list" start="2"><li>Click <strong>Commit</strong></li></ol><ul id="b0b9a1bb-8eef-4de9-a073-4009aae373f4" class="bulleted-list"><li style="list-style-type:disc">❗ Must be completed from a domain member computer, not Thinkpad</li></ul></li></ol><ol type="1" id="9c201b96-bf67-46fe-b3e1-3176ac28a0b9" class="numbered-list" start="3"><li>Create the IPv4 scope for <em>ProjLAN </em><code>192.168.4.0 /24</code> by IPv4 &gt; <strong>New Scope...</strong><ul id="ec10048e-8d95-432b-8026-1266edcfee30" class="bulleted-list"><li style="list-style-type:disc">Scope Name: <code>ProjLAN</code></li></ul><ul id="7d9a5bac-85f4-4fcc-8784-0550407742f0" class="bulleted-list"><li style="list-style-type:disc">IP Address Range: <code>192.168.4.1 - 192.168.4.254</code></li></ul><ul id="6a5e8109-4035-40dc-a9c1-5ab4a6037319" class="bulleted-list"><li style="list-style-type:disc">Subnet Mask: <code>255.255.255.0</code> (length 24)</li></ul><ul id="0654caa7-3384-485f-bd03-87086260d50b" class="bulleted-list"><li style="list-style-type:disc">IP Exclusions: <code>192.168.4.1 - 192.168.4.20</code> &amp; <code>192.168.4.200 - 192.168.4.254</code></li></ul><ul id="070ba159-27ed-44c6-a089-8aadccf9f604" class="bulleted-list"><li style="list-style-type:disc">Lease Duration: 8 Days</li></ul><ul id="5da15227-2adc-422c-95cb-56a88092812d" class="bulleted-list"><li style="list-style-type:disc">Configure DHCP Options: Yes, configure now</li></ul><ul id="5e53ed89-6513-449b-9e7a-f5e3b936fdcf" class="bulleted-list"><li style="list-style-type:disc">Router: <code>192.168.4.254</code></li></ul><ul id="54b3c93b-293b-454f-994b-f6e07877e1a3" class="bulleted-list"><li style="list-style-type:disc">Domain Name and DNS Servers: <code>proj.int</code> will enter <code>192.168.4.1</code></li></ul><ul id="68c28921-94ec-4971-93c2-586a54b543a1" class="bulleted-list"><li style="list-style-type:disc">WINS Servers: <code>DC1</code> with IP Address <code>192.168.4.1</code></li></ul><pre id="8dfd0f12-c508-41d9-bcfb-8e05027e3074" class="code code-wrap"><code>#
+# PowerShell commands
+#
+
+#Scope Name &amp; IP Address Range &amp; Lease for 8 days
+Add-DhcpServerv4Scope -Name &quot;ProjLAN&quot; `
+-StartRange 192.168.4.1 -EndRange 192.168.4.254 `
+-SubnetMask 255.255.255.0 `
+-LeaseDuration 8.00:00:00 `
+-State Active 
+
+#Add Exclusions and Delay 
+#Exclusions for servers
+Add-Dhcpserverv4ExclusionRange -ScopeId 192.168.4.0 `
+-StartRange 192.168.4.1 -EndRange 192.168.4.20
+
+#Exclusions for printers &amp; default gateway
+Add-Dhcpserverv4ExclusionRange -ScopeId 192.168.4.0 `
+-StartRange 192.168.4.200 -EndRange 192.168.4.254
+
+#
+Set-DhcpServerv4OptionValue -ComputerName &quot;DHCP.proj.int&quot; `
+-Router 192.168.4.254 `
+-DnsDomain &quot;proj.int&quot; `
+-DnsServer 192.168.4.1 `
+-WinsServer 192.168.4.1</code></pre></li></ol><ol type="1" id="532c4a4f-f61b-4064-9753-8ee23e5079b1" class="numbered-list" start="4"><li>Create the IPv4 scope for <em>PrivLAN </em><code>192.168.5.0 /27</code><ul id="3d3f0b32-67d9-44b3-9762-38c552486e9f" class="bulleted-list"><li style="list-style-type:disc">Scope Name: <code>PrivLAN</code></li></ul><ul id="d31e25da-e849-4ae6-ac7b-ec6b971540a3" class="bulleted-list"><li style="list-style-type:disc">IP Address Range: <code>192.168.5.1 - 192.168.5.30</code></li></ul><ul id="6ec6af33-4832-4dc4-86d4-c21ab8566e65" class="bulleted-list"><li style="list-style-type:disc">Subnet Mask: <code>255.255.255.224</code> (length 27)</li></ul><ul id="9d1bef83-cea7-4392-a980-3125ce890f32" class="bulleted-list"><li style="list-style-type:disc">IP Exclusions: <code>192.168.5.1 - 192.168.5.10</code> &amp; <code>192.168.5.25 - 192.168.5.30</code></li></ul><ul id="29abd555-5f3f-4de2-90aa-e32969bb0b1b" class="bulleted-list"><li style="list-style-type:disc">Lease Duration: 8 Days</li></ul><ul id="53c4260f-9ce0-4fc2-8846-7e27492dabe6" class="bulleted-list"><li style="list-style-type:disc">Configure DHCP Options: Yes, configure now</li></ul><ul id="8c3fcf63-cdf1-43ca-abcf-29a0d2837ea0" class="bulleted-list"><li style="list-style-type:disc">Router: <code>192.168.5.30</code></li></ul><ul id="023bb250-0885-462b-9fd5-e8fbd7475924" class="bulleted-list"><li style="list-style-type:disc">Domain Name and DNS Servers: <code>priv.proj.int</code> will enter <code>192.168.4.1</code> as primary and also <code>192.168.5.1</code><figure id="aa82e217-848b-4a76-90f5-064d3eec5cb2" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2017.png"><img style="width:240px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2017.png"/></a></figure></li></ul><ul id="8099a9a7-91a3-4cef-978c-42cadd4dc6a1" class="bulleted-list"><li style="list-style-type:disc">WINS Servers: <code>Priv-DC1</code> with IP Address <code>192.168.5.1</code><figure id="351900bc-acf9-4a5d-ad6b-43a3e2b8ad37" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2018.png"><img style="width:240px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2018.png"/></a><figcaption>Result - 2 DHCP scopes</figcaption></figure></li></ul></li></ol></div><h2 id="978de941-d6da-4258-a50f-10dfd6afdbd1" class=""><details open=""><summary>4.3) Test DHCP on IT-01</summary></details></h2><div class="indented"><ol type="1" id="ed316b43-f27d-47ad-a770-568df80f111d" class="numbered-list" start="1"><li>On IT-01 connected to ProjLAN switch, set ethernet network adapter properties to <strong>Obtain an IP address &amp; DNS server automatically </strong><p id="523a59f5-333f-4995-8662-af3bcc4e3402" class="">a. From PowerShell run <code>ipconfig /release</code> and <code>ipconfig /renew</code><div class="indented"><figure id="7ea2c59b-5622-4b34-8a32-aaf741776ff8" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2019.png"><img style="width:1164px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2019.png"/></a><figcaption>IT-01 run gets a IP Address from DHCP</figcaption></figure></div></p></li></ol><ol type="1" id="5007d98b-0ee3-4bb5-b099-a9faf1922579" class="numbered-list" start="2"><li>On IT-01 connected to PrivLAN switch, set ethernet network adapter properties to <strong>Obtain an IP address &amp; DNS server automatically</strong><ol type="a" id="c851915d-ee39-4731-b613-949df5ae5c41" class="numbered-list" start="1"><li>From PowerShell run <code>ipconfig /release</code> and <code>ipconfig /renew</code> to get a IP address in the second scope</li></ol></li></ol></div><h1 id="21d680ef-71aa-4605-a90b-19b1b6572138" class="">5)  priv.proj.int Child Domain DC Server</h1><h2 id="135e54bb-b22e-4e1f-a458-ea89371ae302" class=""><details open=""><summary>5.1) Server DC1 Creation &amp; Post-Install Tasks</summary></details></h2><div class="indented"><ol type="1" id="60b39360-f90a-49d1-b9ea-51830fa3a86b" class="numbered-list" start="1"><li>Create VM and set admin password as <code>Pa$$w0rd</code><ul id="fa283609-b7ff-4519-9f3a-f15661f2e371" class="bulleted-list"><li style="list-style-type:disc">❗ Change the script to use the <em>PrivLAN </em>switch &amp; do not run the post-install script, as we do NOT want to join the parent domain</li></ul></li></ol><ol type="1" id="ef4d32e6-fd8f-484e-8825-d1eae2071a98" class="numbered-list" start="2"><li>Enter Server Configuration with <code>sconfig</code><ul id="4b06bb67-dd57-4207-8483-0886f51fcb72" class="bulleted-list"><li style="list-style-type:disc"><code>2</code>) Computer Name: <code>Priv-DC1</code></li></ul><ul id="494ee8c5-31dd-4198-b428-860959c79899" class="bulleted-list"><li style="list-style-type:disc"><code>8</code>) Network Settings<ul id="f189e56d-8d93-4531-af50-294b1b5961b9" class="bulleted-list"><li style="list-style-type:circle"><code>1</code>) Set Network Adapter Address <p id="b4557866-8a26-4b4e-8c4b-615f8f4b935d" class="">❗ Notice that the current IP <code>192.168.5.11</code> is in the network, DHCP relay is working</p><ul id="11949951-05da-4be7-aed0-3dac10398234" class="bulleted-list"><li style="list-style-type:square">Static IP <code>192.168.5.1</code> </li></ul><ul id="0a756fd6-17dd-4952-aa7f-f2379c1ea3fb" class="bulleted-list"><li style="list-style-type:square">Subnet Mask: <code>255.255.255.224</code></li></ul><ul id="a80fc8e9-6017-45e9-b36e-c2bd63b50aa1" class="bulleted-list"><li style="list-style-type:square">Default Gateway: <code>19.168.5.30</code></li></ul></li></ul><ul id="b893269d-56d1-4d56-a21c-ac99dda29305" class="bulleted-list"><li style="list-style-type:circle"><code>2</code>) Set DNS Servers: <code>192.168.4.1</code> &amp; <code>8.8.8.8</code><ul id="4a9c1842-e11b-4f39-8b40-969840484a2d" class="bulleted-list"><li style="list-style-type:square">❗ The DNS server must point to <em>DC1</em> so it can become a child domain. This IP will also be added to the forwarders on <em>Priv-DC1</em></li></ul></li></ul></li></ul><ul id="b96d4472-fef5-4dbd-acd2-482ec406e0ea" class="bulleted-list"><li style="list-style-type:disc"><code>6</code>) Download and Install Updates</li></ul></li></ol><ol type="1" id="bddaa4c1-17f7-41ab-971f-0ca2849ea08a" class="numbered-list" start="3"><li>From PowerShell run the following then reboot<ol type="a" id="ead79a74-021d-48a7-8815-98375a33af22" class="numbered-list" start="1"><li><code>Rename-LocalUser -Name &quot;Administrator&quot; -NewName &quot;_PrivSysadmin&quot;</code></li></ol><ol type="a" id="a23d37a2-bb18-4080-88d3-9ec045c1b7bc" class="numbered-list" start="2"><li><code>Rename-NetAdapter -Name &quot;Ethernet&quot; -NewName &quot;PrivLAN&quot;</code></li></ol></li></ol><ol type="1" id="8a871c40-0a16-40b8-9e54-52981e1892e3" class="numbered-list" start="4"><li>Create and attach a 10GB Dynamically expand in VHDX named <code>Priv-DC1_ADdb</code> to <em>Priv-DC1</em>.</li></ol><ol type="1" id="11a516d5-7cb3-447c-81d0-042b11fac08d" class="numbered-list" start="5"><li>From <em>Priv-DC1’s</em> <code>PowerShell </code>Initialize and format the disk by entering the following:<pre id="f237ea92-47b4-4350-9587-9c0412725948" class="code code-wrap"><code>Get-Disk
+Initialize-Disk -Number 1
+New-Partition -DiskNumber 1 -UseMaximumSize
+Get-Partition -DiskNumber 1
+Get-Partition -DiskNumber 1 -PartitionNumber 2 | Format-Volume -FileSystem NTFS
+Get-Partition -DiskNumber 1 -PartitionNumber 2 | Set-Partition -NewDriveLetter D</code></pre><ul id="6985e994-a649-4bf3-a321-a075670730b2" class="bulleted-list"><li style="list-style-type:disc">Create folders ‘SYSVOL’ and ‘NTDS’ in the new <code>D:\ </code>Drive with <code>md SYSVOL</code> &amp; <code>md NTDS</code></li></ul></li></ol><ol type="1" id="e6bd0217-77e2-477d-91c4-9a7a52e68ac9" class="numbered-list" start="6"><li>⏲ Make a checkpoint ‘Before AD Role’</li></ol><ol type="1" id="9091290c-08e0-4491-9ca9-8b5603fa95f0" class="numbered-list" start="7"><li>Verify that <em>Priv-DC1</em> can sucessfully <code>ping DC1.proj.int</code> and <code>ping google.ca</code><p id="d4f6025d-398e-4b57-9d9a-cd5528ce7249" class="">❗  <em>DC1 </em>cannot ping <em>Priv-DC1</em></p></li></ol></div><h2 id="1dc40751-c5c3-421c-b332-e058c391cfac" class=""><details open=""><summary>5.2) Add ADDS Role and Configure Child Domain</summary></details></h2><div class="indented"><p id="2fb1a78f-f9b3-4cf6-8984-c6487c755873" class="">❗ ⏲Take a checkpoint on DC1 and DHCP named ‘before child domain’</p><ol type="1" id="d76ae010-e896-4b1f-b750-4f96ceb6014c" class="numbered-list" start="1"><li>Install ADDS &amp; GPMC on <em>Priv-DC1</em> from PowerShell<ul id="048a4c83-20d8-4ccd-93f5-857f8c36c938" class="bulleted-list"><li style="list-style-type:disc"><code>Install-WindowsFeature -Name AD-Domain-Services,GPMC -IncludeManagementTools</code></li></ul></li></ol><ol type="1" id="ef5e3c94-b628-4146-9e18-7bc8c342a684" class="numbered-list" start="2"><li>⏲ Take a checkpoint ‘before role’</li></ol><ol type="1" id="6024b2de-8e92-40ed-ae78-2476e51f9a3d" class="numbered-list" start="3"><li>Run the following to create the <code>priv.proj.int</code> child domain<pre id="34188a0f-9eb3-4b7f-a48a-99c3c235e78d" class="code code-wrap"><code>#
+# Windows PowerShell script for AD DS Deployment
+# ADDSDomain - creates a new domain in an existing Active Directory forest.
+#
+
+Import-Module ADDSDeployment
+Install-ADDSDomain `
+-NoGlobalCatalog:$false `
+-CreateDnsDelegation:$true `
+-Credential (Get-Credential) `
+-DatabasePath &quot;D:\NTDS&quot; `
+-DomainMode &quot;WinThreshold&quot; `
+-DomainType &quot;ChildDomain&quot; `
+-InstallDns:$true `
+-LogPath &quot;D:\NTDS&quot; `
+-NewDomainName &quot;priv&quot; `
+-NewDomainNetbiosName &quot;priv&quot; `
+-ParentDomainName &quot;proj.int&quot; `
+-NoRebootOnCompletion:$false `
+-SiteName &quot;Default-First-Site-Name&quot; `
+-SysvolPath &quot;D:\SYSVOL&quot; `
+-Force:$true</code></pre><p id="062ba5ab-c5ad-4b88-b847-50e80cbb0a19" class="">❗ When prompted use <code>proj.int</code> admin credentials with FQDN <code>aidan@proj.int</code></p><figure id="c04e224a-2cb0-4e52-a474-d4df7637edbe" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2020.png"><img style="width:576px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2020.png"/></a></figure><ul id="19e8de05-9621-4145-944f-5a6adc39f4d9" class="bulleted-list"><li style="list-style-type:disc">A <em>delegation </em>is a record in a parent zone that lists a name server that is authoritative for the zone in the next level of the hierarchy. Delegations make it possible for servers in one zone to refer clients to servers in other zones. <a href="https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/reviewing-dns-concepts">Read More</a></li></ul></li></ol><ol type="1" id="8958d740-c72b-4022-a9df-b3bfc56d5114" class="numbered-list" start="4"><li>Login to <em>Priv-DC1 </em>with the child domain credentials<em> </em><code>_PrivSysadmin</code></li></ol><ol type="1" id="fbc45cdd-db62-4849-a47d-8211d6ec6b09" class="numbered-list" start="5"><li>Copy the <code>_PrivSysadmin</code> and make a new admin account for Aidan<pre id="83471a87-7119-40a4-96fd-2afbe6928e80" class="code code-wrap"><code>Import-Module ActiveDirectory
+New-ADUser `
+-Name &quot;Aidan&quot; `
+-GivenName &quot;Aidan&quot; `
+-Surname &quot;Waugh&quot; `
+-SamAccountName &quot;Aidan&quot; `
+-UserPrincipalName &quot;Aidan@proj.int&quot; `
+-AccountPassword (ConvertTo-SecureString &quot;Password123&quot; -AsPlainText -Force) `
+-ChangePasswordAtLogon $true `
+-Enabled $true
+
+#View User Details
+Get-ADUser -Identity Aidan -Properties *
+
+#Copy _PrivSysadmin&#x27;s property &#x27;Member of
+$getusergroups = Get-ADUser –Identity _PrivSysadmin -Properties memberof | Select-Object -ExpandProperty memberof
+#Assign Aidan to be a member of the same groups - IE become an admin
+$getusergroups | Add-ADGroupMember -Members Aidan -verbose
+
+#Verify
+Get-ADUser -Identity Aidan -Properties memberof | Select-Object -ExpandProperty memberof</code></pre></li></ol><ol type="1" id="ff365bb2-edd3-48a7-a706-7ecb2561e7a3" class="numbered-list" start="6"><li>Login with <em>Aidan</em> and change password</li></ol><ol type="1" id="7eb9e342-ddff-40a1-91e7-230fedcd6c40" class="numbered-list" start="7"><li>⏲ Checkpoint</li></ol><ul id="52b1acd7-14a8-4b84-b88b-ce4db0cf6d87" class="bulleted-list"><li style="list-style-type:disc">Note - the child domain’s ADUC is not structured with best practices, no additional OU’s were made like the parent domain ( see Appendix C)</li></ul></div><h2 id="d6a78bca-019b-460f-9c73-815a88e76b1c" class=""><details open=""><summary>5.3) Add Priv-DC1 to IT-01’s Server Manager</summary></details></h2><div class="indented"><ol type="1" id="81fbf7ed-c760-4cdf-94d0-17a056c5e894" class="numbered-list" start="1"><li>Verify that <em>DC1’s</em> DNS servers point to both <code>192.168.5.1</code> and <code>192.168.4.1</code></li></ol><ol type="1" id="43f9bfd9-d521-4f00-8156-4777863423e4" class="numbered-list" start="2"><li>On <em>Priv-DC1</em> disable the public firewall<ul id="de9d9961-ffaa-4b2c-a098-4eac463240b6" class="bulleted-list"><li style="list-style-type:disc">Enter the following<pre id="bb4fa5a8-1b6d-4f91-a580-76d072f90517" class="code code-wrap"><code>Get-NetFirewallProfile | Select Name,Enabled
+Set-NetFirewallProfile -Profile Public -Enabled False
+#Verify Public firewall is disabled
+Get-NetFirewallProfile | Select Name,Enabled</code></pre><figure id="605b92d6-1b4a-4115-84a6-ce0569b8ebec" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2021.png"><img style="width:288px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2021.png"/></a><figcaption>If using GUI enable this rule instead - could not find the PS equivalent</figcaption></figure></li></ul></li></ol><ol type="1" id="646f440f-eaf2-4d72-8cb3-afa178ed5b27" class="numbered-list" start="3"><li>Update<em> IT-01</em>’s trusted hosts for the child domain <code>priv.proj.int</code><pre id="b001e6d2-3d34-4750-b55f-1f34dea6a37b" class="code code-wrap"><code>Start-Service -Name WinRM
+Get-ChildItem -Path WSMan:\localhost\Client\TrustedHosts | Format-List
+Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value *.priv.proj.int -Concatenate -Force
+#Might not be required as it&#x27;s a child domain</code></pre></li></ol><ol type="1" id="68c883ae-f4c3-4ee4-8fef-c0b245fa23a6" class="numbered-list" start="4"><li>Add <em>Priv-DC1</em> to <em>IT-01’s </em>Server Manager - because aidan@proj.int is the domain admin, they also have management control over <em>Priv-DC1</em><figure id="f741609a-038b-41bc-b0dd-4d016687a6da" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2022.png"><img style="width:1357px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2022.png"/></a></figure></li></ol><ol type="1" id="881eaca0-6b7a-476f-8b5a-de50a2ee0e61" class="numbered-list" start="5"><li>Go to DNS for priv-dc1.priv.proj.int<ol type="a" id="15bdf044-0156-49f6-bb15-f33cbcf9002d" class="numbered-list" start="1"><li>Verify that the forward lookup zone has <code>8.8.8.8 </code>to reduce unnecessary traffic to <em>DC1</em><figure id="c8bb1a85-0a09-4a31-b619-2e5a5736253f" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2023.png"><img style="width:432px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2023.png"/></a></figure></li></ol><ol type="a" id="9d702914-2161-4a53-8f2b-8563676264ef" class="numbered-list" start="2"><li>Configure the reverse lookup zone </li></ol></li></ol></div><h2 id="07d0d2cd-4850-4094-89e1-36652d006a3f" class=""><details open=""><summary>5.4) Join Win10 IT-02 to Child Domain</summary></details></h2><div class="indented"><ol type="1" id="5e636859-860c-4241-958a-daa86fe70347" class="numbered-list" start="1"><li>Connect VM <em>IT-02</em> to the switch PrivLAN</li></ol><ol type="1" id="5bea0bc5-f243-416a-bade-76f50ee65699" class="numbered-list" start="2"><li>Join the domain <code>priv.proj.int</code> with <code>aidan@proj.int</code> credentials<ul id="0e024fe0-8338-4da2-8152-3b18340af399" class="bulleted-list"><li style="list-style-type:disc">Any Win10 Client attached to this switch will receive a DHCP address, they do not need to be part of the domain</li></ul></li></ol><ol type="1" id="fd744f7b-1252-4ae2-bf55-15b6166e14cb" class="numbered-list" start="3"><li>In PowerShell run <code>ipconfig /all</code> <ol type="a" id="5a8bfb6e-c01b-4414-95a2-9e1ee107555c" class="numbered-list" start="1"><li>A DHCP IP address is assigned  <code>192.168.5.0 /27</code></li></ol><ol type="a" id="8df9161c-b271-4e06-9c82-50aa4f5e4eec" class="numbered-list" start="2"><li>The address lease on DHCP Manager shows type: DHCP</li></ol><figure id="ba77d11a-0c71-429c-9ed7-edfc2eb60c75" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2024.png"><img style="width:1220px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2024.png"/></a></figure></li></ol><ol type="1" id="b65df8a1-6727-477f-ad21-cc35f7f09576" class="numbered-list" start="4"><li>Verify connectivity from <em>IT-02.priv.proj.int</em><ol type="a" id="f429ad4a-6f8d-438f-a085-f8b58da823dc" class="numbered-list" start="1"><li><code>ping dc1.proj.int</code></li></ol><ol type="a" id="0efb23aa-0e93-4c7c-a150-c151d2d7ca62" class="numbered-list" start="2"><li><code>ping google.ca</code></li></ol></li></ol></div><h1 id="8935fd16-c399-42ad-a59f-a54ca7ee2f29" class="">Appendices</h1><h2 id="0f17e465-4098-4052-a498-fa2f63764115" class=""><details open=""><summary>Appendix A) Network Planning - VM Names, IP, &amp; Scope</summary></details></h2><div class="indented"><div id="8711e242-284b-4b7a-b53f-45a6a18b3d95" class="collection-content"><h4 class="collection-title">VM Names &amp; IP</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Network</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>IP Address</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>OS</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Local Admin</th></tr></thead><tbody><tr id="e140b5e9-ee06-4382-96b3-73f2c41ff781"><td class="cell-^&gt;yS"><span class="selected-value select-value-color-blue">INTNAT 192.168.3.0 /24</span></td><td class="cell-title"><a href="https://www.notion.so/NATRTR-e140b5e9ee06438296b373f2c41ff781">NATRTR</a></td><td class="cell-;fm;">192.168.3.253 /24
+DG 192.168.3.254 /24
+192.168.4.254 /24
+192.168.5.30 /27</td><td class="cell-qTGi"><span class="selected-value">Server 2019</span></td><td class="cell-^IxV"><code>_LSysadmin</code></td></tr><tr id="2b297e6a-0900-4925-ad92-4269db6a241f"><td class="cell-^&gt;yS"><span class="selected-value select-value-color-green">proj.int 192.168.4.0 /24</span></td><td class="cell-title"><a href="https://www.notion.so/DC1-2b297e6a09004925ad924269db6a241f">DC1</a></td><td class="cell-;fm;">192.168.4.1</td><td class="cell-qTGi"><span class="selected-value">Server 2019</span></td><td class="cell-^IxV"><code>_Sysadmin</code> &amp; <code>Aidan</code></td></tr><tr id="58d14045-a660-4c37-9e46-6ca5828e2a44"><td class="cell-^&gt;yS"><span class="selected-value select-value-color-green">proj.int 192.168.4.0 /24</span></td><td class="cell-title"><a href="https://www.notion.so/DHCP-58d14045a6604c379e466ca5828e2a44">DHCP</a></td><td class="cell-;fm;">192.168.4.2</td><td class="cell-qTGi"><span class="selected-value">Server 2019</span></td><td class="cell-^IxV"><code>_LSysadmin</code></td></tr><tr id="5d8a595a-c592-4ad8-b503-6d5258a9ac88"><td class="cell-^&gt;yS"><span class="selected-value select-value-color-green">proj.int 192.168.4.0 /24</span></td><td class="cell-title"><a href="https://www.notion.so/IT-01-5d8a595ac5924ad8b5036d5258a9ac88">IT-01</a></td><td class="cell-;fm;">192.168.4.21</td><td class="cell-qTGi"><span class="selected-value">Win10Ent</span></td><td class="cell-^IxV"><code>_LSysadmin</code></td></tr><tr id="efeeeac5-dc58-4513-ad81-cb05490e7ce9"><td class="cell-^&gt;yS"><span class="selected-value select-value-color-red">priv.proj.int 192.168.5.0 /27</span></td><td class="cell-title"><a href="https://www.notion.so/PRIV-DC1-efeeeac5dc584513ad81cb05490e7ce9">PRIV-DC1</a></td><td class="cell-;fm;">192.168.5.1</td><td class="cell-qTGi"><span class="selected-value">Server 2019</span></td><td class="cell-^IxV"><code>_PrivSysadmin</code></td></tr><tr id="c61d68bf-1dd2-4a04-a1c5-c43dd2e11b42"><td class="cell-^&gt;yS"><span class="selected-value select-value-color-red">priv.proj.int 192.168.5.0 /27</span></td><td class="cell-title"><a href="https://www.notion.so/IT-02-c61d68bf1dd24a04a1c5c43dd2e11b42">IT-02</a></td><td class="cell-;fm;">192.168.5.11</td><td class="cell-qTGi"><span class="selected-value">Win10Ent</span></td><td class="cell-^IxV"><code>_LSysadmin</code></td></tr></tbody></table></div><p id="020aad41-818f-42b9-aafa-55ce0b647710" class="">❗  <em>proj.int</em> domain admin (the super user) is <code>aidan@proj.int</code></p><p id="1838608b-7430-4645-9fbd-01fd435d0df6" class="">
+</p><h3 id="f5b735ed-6921-41d8-92a6-61f0e7880c35" class="">Scope: ProjLAN 192.168.4.0 /24 Parent Domain </h3><table id="fb086ad7-9d8a-4fe5-94b9-020636e568da" class="simple-table"><tbody><tr id="21dd4f6d-e19e-4375-b51b-524346ab0c24"><td id="&gt;ake">Scope Name</td><td id="CtPI">ProjLAN</td></tr><tr id="5a13f32e-63de-4057-a695-488851737f6d"><td id="&gt;ake">IP Address Range</td><td id="CtPI">192.168.4.1 - 192.168.4.254</td></tr><tr id="9897a494-3065-49c8-828a-ab8598d7e7fa"><td id="&gt;ake">Subnet Mask</td><td id="CtPI">255.255.255.0  Length 24</td></tr><tr id="2b281165-4dcb-4100-974f-c1d09d78c55a"><td id="&gt;ake">IP Exclusions</td><td id="CtPI">192.168.4.1 - 192.168.4.20
+192.168.4.200 - 192.168.4.254</td></tr><tr id="527ccc64-bff0-49a6-b58e-7f749d8f1024"><td id="&gt;ake">Router IP</td><td id="CtPI">192.168.4.254</td></tr><tr id="db8c0476-be55-4a50-ab28-00939c9bb5e2"><td id="&gt;ake">DNS Servers</td><td id="CtPI">DC1 &gt; 192.168.4.1</td></tr><tr id="273a664e-7246-440f-9915-7c5119fdbd74"><td id="&gt;ake">WINS Servers</td><td id="CtPI">DC1 <strong>&gt;</strong> 192.168.4.1</td></tr></tbody></table><h3 id="a1b4f89b-8aca-401a-af7b-e56d42915ed2" class="">Scope: PrivLAN 192.168.5.0 /27 Child Domain </h3><table id="ebcf98b1-080d-4edb-a059-895c6a0ae488" class="simple-table"><tbody><tr id="f177d873-0400-4c44-9c1a-bb7db9395280"><td id="&gt;ake">Scope Name</td><td id="CtPI">PrivLAN</td></tr><tr id="870366cd-935e-4b50-8305-15dbc8fd4523"><td id="&gt;ake">IP Address Range</td><td id="CtPI">192.168.5.1 - 192.168.5.30</td></tr><tr id="df962ec7-8645-4cba-be3d-658daeccebb1"><td id="&gt;ake">Subnet Mask</td><td id="CtPI">255.255.255.224 Length 27</td></tr><tr id="5d9fed80-b17f-48f0-a504-b15901099063"><td id="&gt;ake">IP Exclusions</td><td id="CtPI">192.168.5.1 - 192.168.5.10
+192.168.5.25 - 192.168.5.30</td></tr><tr id="0c2f1716-3b31-4469-ae30-86bd1960fa5f"><td id="&gt;ake">Router IP</td><td id="CtPI">192.168.5.30</td></tr><tr id="5443148b-ecd7-420f-ae05-df32e9df772f"><td id="&gt;ake">DNS Servers</td><td id="CtPI">DC1 &gt; 192.168.4.1
+Priv-DC1 &gt; 192.168.5.1</td></tr><tr id="043329d8-1b0a-4f09-8d4e-4b07baf044b1"><td id="&gt;ake">WINS Servers</td><td id="CtPI">Priv-DC1 &gt; 192.168.5.1</td></tr></tbody></table></div><h2 id="7922a4a9-c68d-499f-986d-648ce60e9364" class=""><details open=""><summary>Appendix B) Network Diagram</summary></details></h2><div class="indented"><figure id="9ce9727f-9f84-464c-ba5b-9e97c5bbb752" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Group_Server_Project_Network_Diagramfinal.png"><img style="width:1078px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Group_Server_Project_Network_Diagramfinal.png"/></a></figure></div><h2 id="2a277e6e-e7db-4fde-b201-a927c340a72d" class=""><details open=""><summary>Appendix C) proj.int ADUC Organization Diagram</summary></details></h2><div class="indented"><figure id="6784f73f-de4e-4c0e-bb19-7bcc4fe7cb58" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Proj_ADUC_organization%201.png"><img style="width:1298px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Proj_ADUC_organization%201.png"/></a><figcaption>Proj.int only, does not include the child domain priv.proj.int</figcaption></figure></div><h2 id="63f3eb46-0b92-4d17-8291-f7fcca7c687e" class=""><details open=""><summary>Appendix D) VM Server 2019 Creation &amp; Post-Install Tasks Scripts &amp; Checklist</summary></details></h2><div class="indented"><h3 id="9e27b7c4-c484-49aa-8d5f-cdff252be86c" class="">VM Server Core 2019 Creation Script</h3><ol type="1" id="5f5e1125-f051-4e13-99c7-b51e1e84c3b6" class="numbered-list" start="1"><li>Open PowerShell from the host Thinkpad and run the following as administrator:<p id="bf95d1b2-0127-45c8-9099-cae86b5d2aa8" class="">❗ <code>-SwitchName</code> <em>ProjLAN </em>needs to be changed per network</p><pre id="fa8fedf8-7d52-4abe-8401-365bd749f419" class="code code-wrap"><code>#
+# Create a Server Core VM with 2GB Memory on a Differencing Disk
+#
+$VMName = Read-Host -Prompt &#x27;Input the VM name&#x27;
+$parentpath = &quot;V:\VMs\VHDX\ParentServerCore2019.vhdx&quot;
+$VHDPath = &quot;V:\VMs\VHDX\&quot; + $VMName + &quot;.vhdx&quot;
+
+# Create VM with a differencing disk, update settings ,and start vm
+New-VHD -ParentPath $parentpath -Path $VHDPath -Differencing
+New-VM -Name $VMName -MemoryStartupBytes 2GB -VHDPath $VHDPath -Generation 2 -SwitchName ProjLAN
+Set-VM $VMName -AutomaticCheckpointsEnabled $false
+Set-VMMemory $VMName -DynamicMemoryEnabled $true
+Enable-VMIntegrationService -VMName $VMName -Name &quot;Guest Service Interface&quot;
+Start-VM -Name $VMName
+VMConnect.exe</code></pre></li></ol><ol type="1" id="fed736dc-1308-44df-ac51-dfe422c8ad58" class="numbered-list" start="2"><li>From the new VM console, enter in the default admin password as <code>Pa$$w0rd</code></li></ol><h3 id="17f6b4be-a0c3-4c44-aa93-3e9a9bc5290d" class="">Server Post-Installation Tasks - Manual Checklist</h3><p id="67273187-6e93-4904-ab05-81ab41e0d805" class="">Complete the following the script and/or <code>sconfig</code>, <code>powershell</code>, GUI</p><ul id="9389fcf8-9144-419e-91f4-7af110e019af" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Rename the server</span></li></ul><ul id="aae45a1f-681c-4240-bf2a-2d1199f10786" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Assign Network Settings</span><ul id="a11420fd-459a-4579-b765-38010d6b3072" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">IPv4 Address</span></li></ul><ul id="2ffc7f4e-7d35-4c5f-b6fd-918712ecbfc2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Subnet Mask</span></li></ul><ul id="ad6aa258-97fc-4db8-b134-a267eaea3422" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Default Gateway</span></li></ul><ul id="e45fe56b-07b8-4ce1-a795-6cf297b667b9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">DNS Servers</span></li></ul></li></ul><ul id="a8b8f78d-f4ba-47d6-93bc-010fe9a5a424" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Rename the network adapter</span></li></ul><ul id="bf18eb79-49d3-4d29-a4dd-4862ee80a303" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Rename the default <em>Administrator </em>user to  a variation of ‘_Sysadmin’</span></li></ul><ul id="f269b822-3bfe-4a13-b443-67a1b50e7925" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Verify the Server 2019 trial is activated for 180 days</span></li></ul><ul id="b53c1506-074d-450d-bdb3-68c9af3f8b7d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Verify networking by:</span><ul id="4f14db26-52a2-49bf-8032-a4da74dc75a4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>ping google.ca</code> to check DNS &amp; access to the internet</span></li></ul><ul id="b6321d26-697c-449c-b992-55ad22ae1fd9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>tracert google.ca</code> to view router hops (if required)</span></li></ul><ul id="54c355a6-252b-48ed-b686-db0df90933c8" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>ping &lt;VM on network&gt;</code> if applicable</span></li></ul></li></ul><ul id="a6a761a4-d582-46ce-92e1-e6bd4954e3b2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Verify the post-install tasks from PS or GUI</span><ul id="d4115e94-9788-45a3-a894-072458393536" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>ipconfig /all</code> to see Host Name, IPv4 address, subnet mask, default gateway, DNS servers</span></li></ul><ul id="e991c8b7-c59d-4a1e-b27e-33463e8e69e5" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>Get-LocalUser</code> to verify Administrator has been renamed to _LSysadmin</span></li></ul><ul id="542730da-8f72-4754-9a4f-ca9ddce0055c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>Get-NetAdapter</code> to verify the adapter is renamed</span></li></ul></li></ul><ul id="edaadbf0-4d82-4b2d-b85c-36693f23f0de" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Join the domain (if it exists and is applicable)</span><ul id="fd0cfcea-52e4-4160-8039-61527fdbabc3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Set the OU location </span></li></ul></li></ul><ul id="cb31d9a3-564e-4fbd-9ca1-7fd0940ed15c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">⏲ Take a checkpoint</span></li></ul><h3 id="dfad5b92-6bc3-4c11-8416-636466866f5d" class="">Server Post-Installation Tasks - Script</h3><ol type="1" id="f4cd88a1-c164-4d7c-9972-f9ceb84e68f7" class="numbered-list" start="1"><li>Complete the post installation tasks from the new VM with <code>PowerShell </code>with the following:<p id="a10ffb3f-b820-4743-a8b6-7a7082d0dbcf" class="">❗ This script is set up for <em>Proj.int </em><code><em>192.168.4.0/ 24</em></code><em> </em>the IP, DNS, DomainName, NetAdapter need to be updated for other networks</p><pre id="22bba236-b088-4627-8ba3-4b580c2acd08" class="code code-wrap"><code>#
+# Post-installation tasks
+#
+$IP = Read-Host -Prompt &#x27;Enter IP 192.168.x.x&#x27;
+$SrvName = Read-Host -Prompt &#x27;EnterServerNAME&#x27;
+$SrvOUPath = Read-Host -Prompt &#x27;AD Path OU=X,OU=Servers,DC=proj,DC=int&#x27;
+$MaskBits = 24
+$Gateway = &quot;192.168.4.254&quot;
+$Dns = &quot;192.168.4.1&quot;
+$IPType = &quot;IPv4&quot;
+
+
+# Retrieve the network adapter that you want to configure
+$adapter = Get-NetAdapter | ? {$_.Status -eq &quot;up&quot;}
+# Remove any existing IP, gateway from our ipv4 adapter
+If (($adapter | Get-NetIPConfiguration).IPv4Address.IPAddress) {
+ $adapter | Remove-NetIPAddress -AddressFamily $IPType -Confirm:$false
+}
+If (($adapter | Get-NetIPConfiguration).Ipv4DefaultGateway) {
+ $adapter | Remove-NetRoute -AddressFamily $IPType -Confirm:$false
+}
+ # Configure the IP address and default gateway
+$adapter | New-NetIPAddress `
+ -AddressFamily $IPType `
+ -IPAddress $IP `
+ -PrefixLength $MaskBits `
+ -DefaultGateway $Gateway
+# Configure the DNS client server IP addresses
+$adapter | Set-DnsClientServerAddress -ServerAddresses $DNS
+# Rename the Network Adapter
+Rename-NetAdapter -Name &quot;Ethernet&quot; -NewName &quot;ProjLAN&quot;
+
+# Name Computer, add to Domain and OU placement
+$cred = Get-Credential proj\aidan
+Add-Computer -DomainName proj.int -Credential $cred -OUPath $SrvOUPath
+$computer = Get-WmiObject win32_computersystem
+$r = $computer.rename(&quot;$SrvName&quot;, $cred.GetNetworkCredential().Password, $cred.username)
+
+#Rename the local admin account
+Rename-LocalUser -Name &quot;Administrator&quot; -NewName &quot;_LSysadmin&quot;
+
+# Restart-Computer -Force</code></pre></li></ol><ol type="1" id="8182d537-0e53-4207-bf68-dedd7d44861b" class="numbered-list" start="2"><li>After the script is complete run <code>Restart-Computer -Force</code></li></ol><ol type="1" id="eb8bdef5-4740-448a-9640-c88a424c26ad" class="numbered-list" start="3"><li>Login with proj<em>\Aidan</em> and complete the following from <code>PowerShell</code> to verify :<ul id="8b5fc5f2-54e5-45dc-8781-abf281b4e051" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>ipconfig /all</code> to see Host Name, IPv4 address, subnet mask, default gateway, DNS servers</span></li></ul><ul id="fe60f7a5-329b-4504-a569-3be2a2e5e16d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>Get-LocalUser</code> to verify Administrator has been renamed to _LSysadmin</span></li></ul><ul id="9bb7ac7e-77da-4ecc-b514-14a569e1cb44" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>Get-NetAdapter</code> to verify the adapter is renamed</span></li></ul></li></ol><ol type="1" id="ca8041f7-f0f4-4c8f-87a0-940b16496bb0" class="numbered-list" start="4"><li>Verify network connectivity in <code>PowerShell</code> with:<ul id="fbc879a7-129a-4ba8-b752-6ba13c29684e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>ping google.ca</code> to test DNS &amp; that the packets can reach the destination</span></li></ul><ul id="ab22bad4-d952-4f59-98c9-d89754898854" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>tracert google.ca</code> to view the router hops to view the triple NAT </span></li></ul></li></ol><ol type="1" id="9c557f0e-00b8-4d19-bce1-6271ad25f430" class="numbered-list" start="5"><li>Add the new Server Core VM to RSAT Server Manager  IT-01<ul id="b6c49e73-d7ca-4411-997d-be27749448f5" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">The Server 2019 Datacenter Evaluation 180 day trial watermark is present and activated</span></li></ul></li></ol><ol type="1" id="f33f8d04-c23a-4c7a-af2a-d6becc2414ba" class="numbered-list" start="6"><li>⏲ Take a checkpoint </li></ol></div><h2 id="9ba1ed43-4315-4793-9ed2-ba47af824273" class=""><details open=""><summary>Appendix E) Screenshots - IT-01’s Server Manager, Hyper-V, ADUC &amp; tracert comparison</summary></details></h2><div class="indented"><figure id="90ef5f59-db4e-4ed4-bf1b-6cad530d2973" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2025.png"><img style="width:1365px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2025.png"/></a><figcaption>VM WIN10 Client (member of the parent <em>proj.int</em> domain) is able to manage all servers with the parent domain, child domain, and workgroup (NATRTR.local)</figcaption></figure><figure id="ebd389f8-656f-4eed-b3fb-4bd765173409" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2026.png"><img style="width:537px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2026.png"/></a><figcaption>VM’s on Hyper-V, all servers are running server core</figcaption></figure><figure id="5969c46f-e9f1-4ab5-be48-7a5d7ba1515f" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2027.png"><img style="width:1684px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2027.png"/></a><figcaption>ADDC comparison of OU Structure &amp; groups the admin is a member of</figcaption></figure><figure id="14992dcc-7546-4db3-8d42-a97e8e051aec" class="image"><a href="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2028.png"><img style="width:815px" src="Server%20Project%20-%20Aidan%20Waugh%20ddea0a91b3474754869a29e60e47ed52/Untitled%2028.png"/></a><figcaption>Tracert comparison </figcaption></figure><p id="46a89728-4af9-425e-8560-3e0352203c3d" class="">
+</p></div></div></article></body></html>
